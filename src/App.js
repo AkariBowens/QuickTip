@@ -3,6 +3,7 @@ import {
   createTheme,
   FormControl,
   Input,
+  InputLabel,
   Slider,
   ThemeProvider,
   ToggleButton,
@@ -12,6 +13,12 @@ import {
 import { useState } from "react";
 
 function App() {
+  const [billAmount, setBillAmount] = useState(0);
+
+  const handleBill = (event, newBillAmount) => {
+    setBillAmount(newBillAmount);
+  };
+
   const [tipAmount, setTipAmount] = useState("");
 
   const handleTip = (event, newTipAmount) => {
@@ -36,6 +43,18 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
+        {/* input label -> input label */}
+        <InputLabel a required>
+          Bill Amount{" "}
+          <Input
+            defaultValue={0}
+            aria-label="bill-amount"
+            type="number"
+            value={billAmount}
+            onChange={handleBill}
+          ></Input>
+        </InputLabel>
+
         <FormControl>
           <ToggleButtonGroup
             aria-label="Tip Amount"
@@ -67,6 +86,7 @@ function App() {
               Custom
             </ToggleButton>
           </ToggleButtonGroup>
+
           {/* group Slider and Input */}
           <Slider
             defaultValue={1}
