@@ -18,6 +18,12 @@ function App() {
     setTipAmount(newTipAmount);
   };
 
+  const [billSplit, setBillSplit] = useState(1);
+
+  const handleBillSplitChange = (event, newBillSplit) => {
+    setBillSplit(newBillSplit);
+  };
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -61,6 +67,7 @@ function App() {
               Custom
             </ToggleButton>
           </ToggleButtonGroup>
+          {/* group Slider and Input */}
           <Slider
             defaultValue={1}
             step={1}
@@ -68,8 +75,14 @@ function App() {
             max={4}
             valueLabelDisplay="auto"
             aria-labelledby="billSplitSlider"
+            value={billSplit}
+            onChange={handleBillSplitChange}
           />
-          {/* <Input aria-labelledby="billSplitSlider" /> */}
+          <Input
+            size="small"
+            value={billSplit}
+            aria-labelledby="billSplitSlider"
+          />
         </FormControl>
       </ThemeProvider>
     </div>
