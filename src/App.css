@@ -1,0 +1,36 @@
+.app {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  /* position: absolute; */
+  /* margin: 25px; */
+}
+
+/* .MuiFormGroup-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 25px;
+  /* align-items: self-start; */
+
+/* .form__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 15px;
+  padding: 5px;
+} */
+/* .form__container--tip {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+/* margin: 15px;
+  padding: 5px;
+}
+.form__container--split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 15px;
+  padding: 5px;
+}  */
