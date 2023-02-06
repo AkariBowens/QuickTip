@@ -40,16 +40,20 @@ function App() {
 
   const [billTotal, setBillTotal] = useState(0);
   const [tipTotal, setTipTotal] = useState(0);
-  // const [billPerPerson, setBillPerPerson] = useState(0);
 
-  // don't need to create a state
+  const [customTip, setCustomTip] = useState(0);
 
-  // on submit, add all the totals
-  // on submit, sed data to a file with this data
+  const handleCustomTip = (event, newcustomTip) => {
+    setCustomTip(event.value);
+    setTipAmount(customTip / 100);
+  };
+
   const handleSubmit = (event, newBillTotal, newBillPerPerson) => {
-    setBillTotal(billAmount + tipTotal);
-    setTipTotal(billAmount * tipAmount);
+    // setBillTotal(billAmount + tipTotal);
+    // setTipTotal(billAmount * tipAmount);
     // setBillPerPerson((billTotal + tipTotal) / billSplit);
+    // this turns isShow on and that turns the display in if i choose that style
+    // if submit is pressed - changes submit button to "reset" - unnecessary
   };
 
   const greatBillTotal = billAmount * tipAmount;
@@ -67,28 +71,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="app">
-        {/* <div className="form__container"> */}
-        {/* input label -> input label */}
         <Container maxWidth="md">
-          <FormGroup onSubmit={handleSubmit} sx={{ m: 1.5 }} size="lg">
+          <h1>QuickTip</h1>
+          <FormGroup sx={{ m: 1.5 }} size="lg">
             {/* This is the configuration for the Bill Amount input */}
-            {/* <FormControl>
-              <InputLabel sx={{ m: 2 }}>Bill Amount </InputLabel>
-              <Input
-                // defaultValue={0}
-                onChange={handleBill}
-                aria-label="bill amount"
-                type="number"
-                sx={{ m: 2, p: 2 }}
-                required
-              ></Input>
-            </FormControl> */}
             <TextField
               id="bill-amount"
               label="Bill Amount"
               variant="outlined"
               onChange={(event) => setBillAmount(event.target.value)}
-              // value={e.target.value}
               InputProps={{
                 inputMode: "numeric",
                 pattern: "[0-9]*",
@@ -101,57 +92,51 @@ function App() {
             {billAmount}
 
             {/* This is the configuration for the Tip amount Button Group */}
-
-            <ToggleButtonGroup
-              aria-label="tip amount"
-              color="primary"
-              value={tipAmount}
-              onChange={handleTip}
-              exclusive
-              sx={{ m: 2, p: 2 }}
-            >
-              {/* add button for no tip */}
-              <ToggleButton
-                variant="contained"
-                value="1"
-                aria-label="no tip"
-                // onClick={handleTip}
+            <Container>
+              <ToggleButtonGroup
+                aria-label="tip amount"
+                color="primary"
+                value={tipAmount}
+                onChange={handleTip}
+                exclusive
+                sx={{ m: 2, p: 2 }}
               >
-                No Tip
-              </ToggleButton>
-              <ToggleButton
-                variant="contained"
-                value="1.15"
-                aria-label="fifteen percent tip"
-                // onClick={handleTip}
-              >
-                15%
-              </ToggleButton>
-              <ToggleButton
-                value="1.18"
-                aria-label="eighteen percent tip"
-                // onClick={handleTip}
-              >
-                18%
-              </ToggleButton>
-              <ToggleButton
-                value="1.2"
-                aria-label="twenty percent tip"
-                // onClick={handleTip}
-              >
-                20%
-              </ToggleButton>
-              {/* last buttom custom? - then make it the tip amount */}
-              {/* <InputLabel>
-                  Or Enter Tip Percent:{" "}
-                  <Input onChange={handleTip} value={tipAmount} />
-                </InputLabel> */}
-
-              {/* On button press, open input */}
-            </ToggleButtonGroup>
+                <ToggleButton variant="contained" value="1" aria-label="no tip">
+                  No Tip
+                </ToggleButton>
+                <ToggleButton
+                  variant="contained"
+                  value="1.15"
+                  aria-label="fifteen percent tip"
+                >
+                  15%
+                </ToggleButton>
+                <ToggleButton value="1.18" aria-label="eighteen percent tip">
+                  18%
+                </ToggleButton>
+                <ToggleButton value="1.2" aria-label="twenty percent tip">
+                  20%
+                </ToggleButton>
+              </ToggleButtonGroup>
+              <TextField
+                id="tip-amount"
+                label="Custom Tip"
+                variant="outlined"
+                // onChange={(event) => setCustomTip(event.target.value)}
+                onChange={(event) => setTipAmount(event.target.value / 100)}
+                InputProps={{
+                  inputMode: "numeric",
+                  pattern: "[0-9]*",
+                  endAdornment: (
+                    <InputAdornment position="end">%</InputAdornment>
+                  ),
+                }}
+              />
+            </Container>
+            {console.log(customTip + "customTip")}
             {console.log(tipAmount)}
             {/* This is the configuration for the billsplit slider */}
-            {/* group Slider and Input */}
+
             <Container>
               <Slider
                 defaultValue={1}
@@ -171,7 +156,9 @@ function App() {
               Submit
             </Button>
           </FormGroup>
-          <Container>
+
+          {/* This is the output for the data */}
+          <Container size="lg">
             {/* add this to a display and pass props to it */}
             {billTotal}
             {tipTotal}
