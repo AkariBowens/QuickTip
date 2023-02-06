@@ -22,14 +22,14 @@ import { Box } from "@mui/system";
 function App() {
   const [billAmount, setBillAmount] = useState(1);
 
-  const handleBill = (event, newBillAmount) => {
-    setBillAmount(event.value);
-  };
+  // const handleBill = (event, newBillAmount) => {
+  //   setBillAmount(event.value);
+  // };
 
   const [tipAmount, setTipAmount] = useState("");
 
   const handleTip = (event, newTipAmount) => {
-    setTipAmount(newTipAmount);
+    setTipAmount(newTipAmount / 100);
   };
 
   const [billSplit, setBillSplit] = useState(1);
@@ -39,13 +39,13 @@ function App() {
   };
 
   const [billTotal, setBillTotal] = useState(0);
-  const [tipTotal, setTipTotal] = useState(0);
+  // const [tipTotal, setTipTotal] = useState(0);
 
   const [customTip, setCustomTip] = useState(0);
 
   const handleCustomTip = (event, newcustomTip) => {
     setCustomTip(event.value);
-    setTipAmount(customTip / 100);
+    setTipAmount(customTip / 100 + 1);
   };
 
   const handleSubmit = (event, newBillTotal, newBillPerPerson) => {
@@ -56,8 +56,9 @@ function App() {
     // if submit is pressed - changes submit button to "reset" - unnecessary
   };
 
-  const greatBillTotal = billAmount * tipAmount;
+  const greatBillTotal = billAmount * (1 + tipAmount);
   const billPerPerson = greatBillTotal / billSplit;
+  const tipTotal = greatBillTotal - billAmount;
 
   const theme = createTheme({
     palette: {
@@ -101,20 +102,20 @@ function App() {
                 exclusive
                 sx={{ m: 2, p: 2 }}
               >
-                <ToggleButton variant="contained" value="1" aria-label="no tip">
+                <ToggleButton variant="contained" value="0" aria-label="no tip">
                   No Tip
                 </ToggleButton>
                 <ToggleButton
                   variant="contained"
-                  value="1.15"
+                  value="15"
                   aria-label="fifteen percent tip"
                 >
                   15%
                 </ToggleButton>
-                <ToggleButton value="1.18" aria-label="eighteen percent tip">
+                <ToggleButton value="18" aria-label="eighteen percent tip">
                   18%
                 </ToggleButton>
-                <ToggleButton value="1.2" aria-label="twenty percent tip">
+                <ToggleButton value="20" aria-label="twenty percent tip">
                   20%
                 </ToggleButton>
               </ToggleButtonGroup>
@@ -123,6 +124,7 @@ function App() {
                 label="Custom Tip"
                 variant="outlined"
                 // onChange={(event) => setCustomTip(event.target.value)}
+                onFocus={(event) => setTipAmount(event.target.value / 100)}
                 onChange={(event) => setTipAmount(event.target.value / 100)}
                 InputProps={{
                   inputMode: "numeric",
@@ -160,18 +162,18 @@ function App() {
           {/* This is the output for the data */}
           <Container size="lg">
             {/* add this to a display and pass props to it */}
-            {billTotal}
-            {tipTotal}
-            {billPerPerson}
             Total Bill
             {greatBillTotal}
+            {tipAmount + "tipamount"}
+            Bill Breakdown: Tip total:
+            {/* {tipTotal + "tip total yuh"} */}
+            {billSplit > 1 && "Bill per Person" + billPerPerson}
             {/* this opens when submit is pressed */}
             {/* {isShow && <Display />} */}
+            {/* if bill amount>0 && <Display /> or <Container> add an outline for how to display this information </Container> */}
             {/* or the display is there the entire time */}
           </Container>
         </Container>
-
-        {/* </div>*/}
       </div>
     </ThemeProvider>
   );
