@@ -22,7 +22,6 @@ function App() {
 
   const handleTip = (event, newTipAmount) => {
     setTipAmount(newTipAmount / 100);
-    // event.target.className = "Mui-Selected";
     console.log(event);
   };
 
