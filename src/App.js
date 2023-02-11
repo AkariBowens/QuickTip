@@ -32,13 +32,6 @@ function App() {
     setBillSplit(newBillSplit);
   };
 
-  // const [customTip, setCustomTip] = useState(0);
-
-  // const handleCustomTip = (event, newcustomTip) => {
-  //   setCustomTip(event.value);
-  //   setTipAmount(customTip / 100 + 1);
-  // };
-
   const greatBillTotal = billAmount * (1 + tipAmount);
   const billPerPerson = greatBillTotal / billSplit;
   const tipTotal = greatBillTotal - billAmount;
@@ -56,9 +49,7 @@ function App() {
     components: {
       MuiToggleButton: {
         styleOverrides: {
-          // Name of the slot
           root: {
-            // Some CSS
             "&.Mui-selected": {
               color: "#93E9BE",
               bgcolor: "#47D990",
