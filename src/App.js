@@ -4,7 +4,6 @@ import {
   createTheme,
   FormGroup,
   InputAdornment,
-  InputLabel,
   Slider,
   TextField,
   ThemeProvider,
@@ -13,9 +12,10 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
-import { Box } from "@mui/system";
 
 function App() {
+  // app configuration
+
   const [billAmount, setBillAmount] = useState(1);
 
   const [tipAmount, setTipAmount] = useState("");
