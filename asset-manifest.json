@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/QuickTip/static/css/main.3a66d7f6.css",
+    "main.js": "/QuickTip/static/js/main.e225694f.js",
+    "index.html": "/QuickTip/index.html",
+    "main.3a66d7f6.css.map": "/QuickTip/static/css/main.3a66d7f6.css.map",
+    "main.e225694f.js.map": "/QuickTip/static/js/main.e225694f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3a66d7f6.css",
+    "static/js/main.e225694f.js"
+  ]
+}
